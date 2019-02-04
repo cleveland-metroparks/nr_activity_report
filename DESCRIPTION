@@ -1,0 +1,7 @@
+Title: Director's report app
+DisplayMode: Normal
+#DisplayMode: Showcase
+Author: Patrick Lorch <pdl@clevelandmetroparks.com>
+AuthorUrl: http://www.clevelandmetroparks.com/
+Type: Shiny
+Tags: leaflet selectize datatables postgis postgresql absolutepanel

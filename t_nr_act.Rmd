@@ -1,0 +1,327 @@
+#' ---
+#' title: "Crop Analysis Q3 2013"
+#' author: "John Smith"
+#' date: "May 3rd, 2014"
+#' ---
+
+## Invasive Plants 
+### South Chagrin 
+**Philipps:** Invasive Plant Treatment 
+
+### North Chagrin 
+**Philipps:** Invasive Plant Treatment 
+**Philipps:** Invasive Plant Treatment 
+**Philipps:** Invasive Plant Treatment 
+**Philipps:** Invasive Plant Treatment 
+**Philipps:** Invasive Plant Assessment 
+**Philipps:** Invasive Plant Assessment 
+**Philipps:** Invasive Plant Assessment 
+**Philipps:** Invasive Plant Assessment 
+
+### Acacia 
+**Philipps:** Invasive Plant Treatment 
+
+### Bedford 
+**Shaffer:** Invasive Plant Treatment 
+
+### West Creek 
+
+### Lakefront 
+
+### Big Creek 
+
+### Bedford,Mill Stream Run 
+
+### Mill Stream Run 
+**Krynak:** Invasive Plant Treatment 
+**Krynak:** Invasive Plant Treatment 
+**Krynak:** Invasive Plant Treatment 
+**Krynak:** Invasive Plant Treatment 
+
+### Garfield Park 
+**Carter-Stone:** Invasive Plant Treatment 
+
+### Brecksville 
+
+### Hinckley 
+
+### Rocky River 
+**Krynak:** Invasive Plant Treatment 
+**Krynak:** Invasive Plant Treatment 
+**Krynak:** Invasive Plant Treatment 
+
+### Hinckley,Bedford 
+
+### Washington 
+**Carter-Stone:** Invasive Plant Treatment 
+**Carter-Stone:** Invasive Plant Treatment 
+
+### Zoo 
+
+### Bedford,Hinckley 
+
+### Bradley Woods,Huntington,Mill Stream Run 
+
+### Other 
+
+### Acacia,Hinckley,Mill Stream Run 
+
+### Ohio & Erie Canal 
+
+
+## Site Managament 
+### South Chagrin 
+**Philipps:** Field Reconnaissance; Looking at seasonal mow needs. Old field is fine; could use IP work for teasel; thistle; buckthorn; and honeysuckle. Overall 1 day of work with ATV sprayer 
+**Philipps:** Field Reconnaissance; Chagrin blvd meadow monitoring. N meadow could benefit from patch mowing; lots of buckthorn around western edge. S meadow could benefit as well; some thistle; honeysuckle; celastrus. General note: push trail out of edges for ecotone 
+**Philipps:** Forestry/Tree Stand Improvement; Sc018 
+**Philipps:** Forestry/Tree Stand Improvement; Sc019 
+**Philipps:** Forestry/Tree Stand Improvement; Tree almost dead. Did not treat. SC025 
+
+### North Chagrin 
+**Philipps:** Site preparation (discing; plowing; etc); herbicide application; Reapplied herbicide to areas where vegetation is still green and new green up areas. Some areas are browning out but wanted to do one final application before seeding.  
+**Philipps:** Planting/Seeding; With Erik 
+**Philipps:** Planting Maintenance; Reinstalled  
+**Philipps:** Field Reconnaissance; Trail assessment of castle valley trail for possible volunteer project 
+**Philipps:** Forestry/Tree Stand Improvement; 275; NC006 
+**Philipps:** Field Reconnaissance; Checked on status of tree nursery after request to mow. Also invasive plant assessment of dingers marsh. Purple loosestrife; glossy buckthorn; and bittersweet control in future  
+**Philipps:** General Vegetation Management; Tree nursery  
+**Philipps:** Field Reconnaissance; Checking establishment of meadow 
+**Philipps:** Forestry/Tree Stand Improvement; NC008; extensive crown dieback and seed production. Did not treat. Could not locate NC007 
+**Philipps:** Forestry/Tree Stand Improvement; NC009 
+**Grieser:** Forestry/Tree Stand Improvement; With Josh Philipps  
+**Philipps:** Forestry/Tree Stand Improvement; NC010; new tag # 247 
+
+### Acacia 
+**Philipps:** Planting Maintenance 
+**Philipps:** Planting/Seeding; No till drill 
+**Philipps:** Field Reconnaissance; Vegetation monitoring NE wetland 
+**Philipps:** Water Level Management 
+**Grieser:** Field Reconnaissance; Prep for TWS workshop 
+
+### Bedford 
+**Shaffer:** Site preparation (discing; plowing; etc); mowing; Grai brush hogged thistle and read canary grass in eastern part of circle emerald field in preparation for potential replanting in future. 
+**Shaffer:** Site preparation (discing; plowing; etc); mowing; Keeping power line right of way area prepped for future planting (first week energy and FWS). 
+**Shaffer:** Forestry/Tree Stand Improvement; One tree complicated. 
+**Shaffer:** Site preparation (discing; plowing; etc); mowing; Prep for plowing 1.5 ac. 
+**Shaffer:** General Vegetation Management; Mowing down thistle before seeding. 
+**Shaffer:** Site preparation (discing; plowing; etc); plowing; Very rocky ground on the west side of fairway.  2.4 ac. 
+
+### West Creek 
+**Carter-Stone:** Water Level Management 
+**Carter-Stone:** Site preparation (discing; plowing; etc); herbicide application 
+
+### Lakefront 
+**Carter-Stone:** General Vegetation Management; Terry and I observed additional landscape debris dumping along Cliff Drive and discussed possible veg removal  
+**Grieser:** Field Reconnaissance; Per Matt Krems request: naturalize area between APTs along hillside 
+
+### Big Creek 
+
+### Bedford,Mill Stream Run 
+
+### Mill Stream Run 
+**Krynak:** Water Level Management 
+**Krynak:** Water Level Management 
+**Cepek:** Water Level Management; Two juvenile green herons and solitary sandpipers  
+
+### Garfield Park 
+
+### Brecksville 
+**Shaffer:** Field Reconnaissance; Looking at scope of work for potential IP work on Palmieri. 
+**Krynak:** Field Reconnaissance; Site visit for Erik while he is away for seeding preparation 
+
+### Hinckley 
+**Shaffer:** Forestry/Tree Stand Improvement; Good uptake on both trees 
+
+### Rocky River 
+**Krynak:** Planting/Seeding; added about 50 plants including milkweed; saliva; clematis and sena 
+
+### Hinckley,Bedford 
+
+### Washington 
+
+### Zoo 
+
+### Bedford,Hinckley 
+
+### Bradley Woods,Huntington,Mill Stream Run 
+**Grieser:** Field Reconnaissance 
+
+### Other 
+**Grieser:** Field Reconnaissance; Shared site visit with Summit MetroParks 
+
+### Acacia,Hinckley,Mill Stream Run 
+
+### Ohio & Erie Canal 
+**Carter-Stone:** Field Reconnaissance; Checking on Blue Heron marsh conditions 
+
+
+## Other 
+### South Chagrin 
+
+### North Chagrin 
+**Philipps:** Interdepartmental Assistance 
+**Philipps:** Interdepartmental Assistance 
+
+### Acacia 
+
+### Bedford 
+
+### West Creek 
+**Carter-Stone:** Stream assessment  
+**Grieser:** Stream Monitoring  
+**Grieser:** Stream Monitoring  
+
+### Lakefront 
+
+### Big Creek 
+**Grieser:** Cross-section survey 
+
+### Bedford,Mill Stream Run 
+**Shaffer:** Moving equipment (tractor broke in field; mechanics came on site to try and fix ended up taking to MSR) 
+
+### Mill Stream Run 
+
+### Garfield Park 
+**Carter-Stone:** Watching fish surveys 
+
+### Brecksville 
+
+### Hinckley 
+
+### Rocky River 
+
+### Hinckley,Bedford 
+**Shaffer:** Move equipment (plow and brush hog) 
+
+### Washington 
+
+### Zoo 
+
+### Bedford,Hinckley 
+**Shaffer:** Move equipment (plow back to o Himckley) 
+
+### Bradley Woods,Huntington,Mill Stream Run 
+
+### Other 
+
+### Acacia,Hinckley,Mill Stream Run 
+**Krynak:** Moving Equipment 
+
+### Ohio & Erie Canal 
+
+
+## Meeting 
+### South Chagrin 
+
+### North Chagrin 
+**Philipps:** Meeting/Conference/Outreach 
+
+### Acacia 
+**Philipps:** Meeting/Conference/Outreach 
+**Philipps:** Meeting/Conference/Outreach 
+
+### Bedford 
+
+### West Creek 
+**Carter-Stone:** Meeting/Conference/Outreach 
+**Philipps:** Meeting/Conference/Outreach; To discuss lessons learned with fulcrum 
+**Grieser:** Meeting/Conference/Outreach 
+**Grieser:** Meeting/Conference/Outreach 
+**Grieser:** Meeting/Conference/Outreach; NRPA Urban Parks application 
+
+### Lakefront 
+**Carter-Stone:** Meeting/Conference/Outreach 
+
+### Big Creek 
+**Carter-Stone:** Meeting/Conference/Outreach; Multiple municipality and county representatives and several contractor reps 
+
+### Bedford,Mill Stream Run 
+
+### Mill Stream Run 
+**Shaffer:** Meeting/Conference/Outreach 
+
+### Garfield Park 
+
+### Brecksville 
+
+### Hinckley 
+
+### Rocky River 
+**Grieser:** Meeting/Conference/Outreach 
+
+### Hinckley,Bedford 
+
+### Washington 
+
+### Zoo 
+**Shaffer:** Meeting/Conference/Outreach 
+
+### Bedford,Hinckley 
+
+### Bradley Woods,Huntington,Mill Stream Run 
+
+### Other 
+**Grieser:** Meeting/Conference/Outreach 
+**Grieser:** Meeting/Conference/Outreach 
+**Grieser:** Meeting/Conference/Outreach 
+**Krynak:** Meeting/Conference/Outreach 
+**Philipps:** Meeting/Conference/Outreach 
+**Grieser:** Meeting/Conference/Outreach; Biohabitats & MLS 
+**Grieser:** Meeting/Conference/Outreach 
+
+### Acacia,Hinckley,Mill Stream Run 
+
+### Ohio & Erie Canal 
+
+
+## Fish & Wildlife 
+### South Chagrin 
+
+### North Chagrin 
+**Philipps:** Wildlife Incident; 7 nests with young; 2 house sparrow nests 
+**Philipps:** Wildlife Incident; Park manager reported domestic duck between SR 91 parking area and NCNC. Could not locate duck. Will continue monitoring area. 
+**Philipps:** Wildlife Incident; Removed 3 inactive nests and 1 active house sparrow nest; took measurements of pavilion dimensions to order netting and spike strips 
+**Philipps:** Wildlife Incident; Trapping nuisance raccoons near river grove dumpster. Behavior normal. 
+
+### Acacia 
+
+### Bedford 
+
+### West Creek 
+**Carter-Stone:** Wildlife Incident 
+
+### Lakefront 
+
+### Big Creek 
+
+### Bedford,Mill Stream Run 
+
+### Mill Stream Run 
+**Krynak:** Wildlife Incident; Road kill taken to MSR dump 
+
+### Garfield Park 
+
+### Brecksville 
+
+### Hinckley 
+
+### Rocky River 
+**Cepek:** Wildlife Incident 
+
+### Hinckley,Bedford 
+
+### Washington 
+
+### Zoo 
+
+### Bedford,Hinckley 
+
+### Bradley Woods,Huntington,Mill Stream Run 
+
+### Other 
+
+### Acacia,Hinckley,Mill Stream Run 
+
+### Ohio & Erie Canal 
+
+
