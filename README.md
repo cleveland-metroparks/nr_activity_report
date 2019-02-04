@@ -31,7 +31,7 @@ Even better reference for [generating and downloading html reports] (https://shi
   - [x] replace NA for reservation with Other
   - [] fix example to work on whole table
   - [] render as word
-- [] get filtered data reactive working
+- [x] get filtered data reactive working
 - [] Grants report
   - This task is waiting for re-import of Fulcrum data, since grant fields are currently blank
   - [x] Grant_id summary field
