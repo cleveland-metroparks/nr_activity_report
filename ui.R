@@ -75,7 +75,8 @@ navbarPage("NR activity reports", id="nav",
                     div(
                         fluidRow(
                             column(3,actionButton("reset", "Reset filter values")),
-                            column(3,downloadButton("dir_report", "Generate management report"))
+                            column(3,downloadButton("dir_report", "Generate management report")),
+                            column(3,downloadButton("download_filtered_table", "Download filtered table"))
                         )
                     ),
                     hr(),
@@ -84,10 +85,20 @@ navbarPage("NR activity reports", id="nav",
             tabPanel("Map table",
                      p("This view show only points visible in the interactive map view,", span(" using filtered data.", style = "color:blue")),
                      textOutput("num_in_map"),
+                     div(
+                         fluidRow(
+                            column(3,downloadButton("download_map_table", "Download map visible table"))
+                         )
+                     ),
                      hr(),
                      DT::dataTableOutput("map_table")
             ),
             tabPanel("Full table",
+                     div(
+                         fluidRow(
+                             column(3,downloadButton("download_whole_table", "Download whole table"))
+                         )
+                     ),
                      hr(),
                      DT::dataTableOutput("full_table")
            ),

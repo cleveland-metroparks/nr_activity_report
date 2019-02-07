@@ -6,6 +6,7 @@ library(dplyr)
 
 function(input, output, session) {
 
+# Not sure this is still needed
     vals <- reactiveValues()
 ## Interactive Map ###########################################
     
@@ -203,6 +204,59 @@ function(input, output, session) {
 
         DT::datatable(df2, options = list(ajax = list(url = action)), escape = FALSE)
     })
+
+    # Generate report for output on button click
+    # For PDF output, change this to ".pdf" or ".doc"
+    output$dir_report <- downloadHandler(
+        filename = paste("nr_act_filtered_report_",
+                         as.character(input$dateRange[1]),"_",
+                         as.character(input$dateRange[2]),".doc",sep=""),
+        content = function(file) {
+            # Copy the report file to a temporary directory before processing it, in
+            # case we don't have write permissions to the current working dir (which
+            # can happen when deployed).
+            tempReport_Rmd=file.path(tempdir(),paste("nr_act_filtered_report_",
+                                                     as.character(input$dateRange[1]),"_",
+                                                     as.character(input$dateRange[2]),".Rmd",sep=""))
+            t_nr_act=nr_act_filtered()
+            sink(file=tempReport_Rmd,append=F,type="output")
+                cat("---","\n",
+                    "title: Directors report update","\n",
+                    "author: Pat Lorch","\n",
+                    "date: ",as.character(Sys.Date()),"\n",
+                    "---","\n","\n",sep="")
+                for(i in unique(t_nr_act$dir_report_category)){
+                    cat("##",i,"\n")
+                    for(j in unique(t_nr_act$reservations2)) {
+                        cat("###",j,"\n")
+                        for(k in t_nr_act$report_text3[t_nr_act$dir_report_category==i &
+                                                       t_nr_act$reservations2==j]) {
+                            cat(k,"  \n")
+                        }
+                        cat("\n")
+                    }
+                    cat("\n","\n")
+                }
+            sink()
+
+            # Knit the document, and eval it in a
+            # child of the global environment (this isolates the code in the document
+            # from the code in this app).
+            rmarkdown::render(tempReport_Rmd, output_file = file,
+                              envir = new.env(parent = globalenv())
+            )
+        }
+    )
+
+    output$download_filtered_table = downloadHandler(
+        filename = paste("nr_act_filtered_table_",
+                         as.character(input$dateRange[1]),"_",
+                         as.character(input$dateRange[2]),".csv",sep=""),
+        content = function(file) {
+            write.csv(nr_act_filtered(), file, row.names = FALSE)
+        }
+    )
+    
     
 ##    map_table ##########################################################
     output$map_table <- DT::renderDataTable({
@@ -213,11 +267,30 @@ function(input, output, session) {
     output$num_in_map = renderText({
         paste("Points in map area = ",vals$N)
     })
-        
+
+    output$download_map_table = downloadHandler(
+        filename = paste("nr_act_map_table_",
+                         as.character(input$dateRange[1]),"_",
+                         as.character(input$dateRange[2]),".csv",sep=""),
+        content = function(file) {
+            write.csv(nr_act_InBounds(), file, row.names = FALSE)
+        }
+    )
+    
 ##    main_table ##########################################################
     output$full_table <- DT::renderDataTable({
         df = nr_act_filtered()
 
         DT::datatable(df, escape = FALSE)
     })
+    
+    output$download_whole_table = downloadHandler(
+        filename = paste("nr_act_whole_table_",
+                         as.character(input$dateRange[1]),"_",
+                         as.character(input$dateRange[2]),".csv",sep=""),
+        content = function(file) {
+            write.csv(nr_act_df, file, row.names = FALSE)
+        }
+    )
+    
 }
