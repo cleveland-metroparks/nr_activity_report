@@ -83,8 +83,14 @@ paste_noNA <- function(x,sep=", ")
 nr_act_df$comments_combined=apply(nr_act_df[comment_fields],1,paste_noNA,sep="; ")
 # This version will find first comment only
 #nr_act_df$comments_combined=do.call(coalesce,nr_act_df[comment_fields])
+purpose_fields=names(nr_act_df)[grep("purpose",names(nr_act_df))]
+nr_act_df$purpose_combined=apply(nr_act_df[purpose_fields],1,paste_noNA,sep="; ")
+description_fields=names(nr_act_df)[grep("description",names(nr_act_df))]
+nr_act_df$description_combined=apply(nr_act_df[description_fields],1,paste_noNA,sep="; ")
 
-nr_act_df$report_text=apply(nr_act_df[c("activity","activities_performed_all","comments_combined")],1,paste_noNA,sep="; ")
+nr_act_df$report_text=apply(nr_act_df[c("activity","activities_performed_all","purpose_combined",
+                                        "description_combined","meeting_location","meeting_attendees",
+                                        "comments_combined")],1,paste_noNA,sep="; ")
 nr_act_df$report_text2=apply(nr_act_df[c("fulcrum_user2","report_text")],1,paste_noNA,sep=": ")
 nr_act_df$report_text3=paste("**",nr_act_df$fulcrum_user2,":** ",nr_act_df$report_text,sep="")
 
@@ -112,37 +118,6 @@ nr_act_df$dir_report_category=case_when(nr_act_df$activity_category2 %in% c("Wil
 t_nr_act=nr_act_df[200:300,]
 tlist=as.list(by(t_nr_act[c("fulcrum_user2","activity","activities_performed_all","comments_combined")],
                  t_nr_act[c("reservations2","dir_report_category")],identity))
-
-# sink(file="t_nr_act.Rmd")
-# cat("#' ---","\n",
-#     "#' title: \"Crop Analysis Q3 2013\"","\n",
-#     "#' author: \"John Smith\"","\n",
-#     "#' date: \"May 3rd, 2014\"","\n",
-#     "#' ---","\n","\n",sep="")
-# for(i in unique(t_nr_act$dir_report_category)){
-#     cat("##",i,"\n")
-#     for(j in unique(t_nr_act$reservations2)) {
-#         cat("###",j,"\n")
-#         for(k in t_nr_act$report_text3[t_nr_act$dir_report_category==i & 
-#                                        t_nr_act$reservations2==j]) {
-#             cat(k,"\n")
-#         }
-#         cat("\n")
-#     }
-#     cat("\n")
-# }
-# sink()
-
-# Example
-# for (i in unique(df$cat1)) {
-#     cat("##",i,"\n")
-#     for (j in unique(df[df$cat1==i,"cat2"])) {
-#         cat("###",j,"\n")
-#         for (k in df$line[df$cat1==i & df$cat2==j])
-#             cat(k,"\n")
-#     }
-# }
-
 
 # Need to decide whether to do this here or move it to a postgis view or table
 
