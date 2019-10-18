@@ -10,36 +10,16 @@ library(rgdal)
 library(htmltools)
 library(sf)
 
-DBname = "NR_monitoring"
-Schema = "management"
-Host = "10.0.0.27"
-# Host = "localhost"
-User = "plorch"
-# User = "shiny"
-Password = "aibMum!$"
-# Password = "GeshSa-8"
-Port = 5432
-# Port = 63333
-
-
-#    The settings below using localhost and 63333 require you have run the command to tunnel safely into the database like:
-#    ssh -i /c/Users/pdl/.ssh/id_rsa -N -L 63333:localhost:5432 plorch@10.0.0.27 &
-#    This method is more secure.  However, it is not working on the server.  It works from R shiny both in window and in browser.
-#    If user has blessed IP address, then direct access will work and comments on "host =" lines below can be toggled.
-#    This is currently the only method that works on the server since the tunnel would need to be on the server and cannot be generic.
-#    Need to know if this is a security issue to have shiny server tunnel to PostgreSQL server.
+source("loginparams.R")
 
 pool <- pool::dbPool(drv = RPostgreSQL::PostgreSQL(),
     dbname = DBname,
     host = Host, user = User, password = Password,port=Port)
-#     host = "10.0.0.27", user = "plorch", password = "aibMum!$",port=5432)
-#     host = "localhost",user = "shiny",password = "GeshSa-8",port = 63333)
-#    host = "10.0.0.27", user = "shiny", password = "GeshSa-8",port=5432)
 
 # This method of importing data ignores geometry collumn and generates a warning:
 #  Warning in postgresqlExecStatement(conn, statement, ...) :
 #   RS-DBI driver warning: (unrecognized PostgreSQL field type geometry (id:85253) in column 13)
-# Could use rgdal to import instead
+# But see use of st_read below for alternative
 
 nr_act = pool %>% tbl(in_schema(Schema,"nr_activity_tracking"))
 nr_act_df = as.data.frame(nr_act)
