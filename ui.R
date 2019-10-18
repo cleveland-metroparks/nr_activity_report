@@ -39,6 +39,7 @@ navbarPage("NR activity reports", id="nav",
            ),
            
            tabPanel("Filter/Summary",
+                    p("This view allows you to filter by Managers, Locations, and Actvities and/or by date range.  You can also download various filtered tables."),
                     useShinyjs(),
                     div(
                         id = "form",
@@ -76,14 +77,15 @@ navbarPage("NR activity reports", id="nav",
                         fluidRow(
                             column(3,actionButton("reset", "Reset filter values")),
                             column(3,downloadButton("dir_report", "Generate management report")),
-                            column(3,downloadButton("download_filtered_table", "Download filtered table"))
+                            column(3,downloadButton("download_filtered_table", "Download filtered table")),
+                            column(3,downloadButton("download_wildlife_table", "Download summary table of wildlife incidents"))
                         )
                     ),
                     hr(),
                     DT::dataTableOutput("summary_table")
             ),
             tabPanel("Map table",
-                     p("This view show only points visible in the interactive map view,", span(" using filtered data.", style = "color:blue")),
+                     p("This view shows only points visible in the interactive map view,", span(" using filtered data.", style = "color:blue")),
                      textOutput("num_in_map"),
                      div(
                          fluidRow(
@@ -93,7 +95,22 @@ navbarPage("NR activity reports", id="nav",
                      hr(),
                      DT::dataTableOutput("map_table")
             ),
+            tabPanel("Planting table",
+                     p("This view allows you look at planting activity table.
+                       You can also download this and summaries as a .csv files.
+                       Summary tables are broken out by material type."),
+                     div(
+                         fluidRow(
+                             column(2,downloadButton("download_planting_table", "Download planting table")),
+                             column(3,downloadButton("download_plantsum_table", "Download planting summary by year, staff, reservation")),
+                             column(3,downloadButton("download_plantsum2_table", "Download planting summary by year, reservation")),
+                             column(3,downloadButton("download_plantsum3_table", "Download planting summary for latest year"))
+                         )                     ),
+                     hr(),
+                     DT::dataTableOutput("planting_table")
+            ),
             tabPanel("Full table",
+                     p("This view allows you look at the entire nr_activity table.  You can also download this as a .csv file."),
                      div(
                          fluidRow(
                              column(3,downloadButton("download_whole_table", "Download whole table"))

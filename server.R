@@ -15,8 +15,11 @@ function(input, output, session) {
         leaflet() %>%
             addTiles(
                 urlTemplate = "//{s}.tiles.mapbox.com/v3/jcheng.map-5ebohr46/{z}/{x}/{y}.png",
-                attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>'
+                attribution = 'Maps by <a href="http://www.mapbox.com/">Mapbox</a>',
+                group = "Mapbox"
             ) %>%
+            addProviderTiles(providers$OpenTopoMap, group = "Open Topo Map") %>%
+            addProviderTiles(providers$Esri.WorldImagery, group = "ESRI WorldImagery") %>%
             setView(lng = -81.72, lat = 41.45, zoom = 12)
     })
 
@@ -52,9 +55,12 @@ function(input, output, session) {
     
     # This observer is responsible for maintaining the circles and legend,
     # according to the variables the user has chosen to map to color and size.
+    
+    # The polygon layer needs to be merged with the data from the points layers to allow more data to be displayed on the popups
     observe({
         colorBy <- input$color
         naf=nr_act_filtered()
+        napf=nr_act_poly
 
         if (colorBy == "fulcrum_user") {
             colorData <- naf$fulcrum_user
@@ -65,11 +71,26 @@ function(input, output, session) {
         }
         
         leafletProxy("map", data = naf) %>%
-            clearMarkers() %>%
+            clearMarkers() %>% clearShapes() %>%
+            setView(lng = -81.65, lat = 41.38, zoom = 10) %>% 
             addCircleMarkers(~longitude, ~latitude, radius=10, layerId=~fulcrum_id,
-                       stroke=FALSE, fillOpacity=1.0, fillColor=pal(colorData)) %>%
+                       stroke=FALSE, fillOpacity=1.0, fillColor=pal(colorData),
+                       group = "Activities") %>% addTiles() %>%
+            addPolygons(data=napf,color="black",weight=1,smoothFactor = 0.5,
+                        opacity = 1.0, fillOpacity = 0.2,fillColor = "grey",
+                        highlightOptions = highlightOptions(color = "white", weight = 2,
+                        bringToFront = FALSE),label=paste0(napf$user_name_multiple,', ',
+                                                          napf$start_date,' start_date , ',
+                                                          napf$activity_category,', ',
+                                                          acres,' acres'),
+                        group = "Polygons") %>%
+            addLayersControl(baseGroups = c("Mapbox","Open Topo Map","ESRI WorldImagery"),
+                             overlayGroups = c("Polygons","Activities"),
+                             position = "bottomright") %>%
             addLegend("bottomleft", pal=pal, values=colorData, title=colorBy,
-                      layerId="colorLegend")
+                      layerId="colorLegend")  #%>% 
+            # addLegend("bottomright", pal=pal2, values=colorData2, title=paste("Polygon colors:",colorBy),
+            #       layerId="colorLegend")
     })
     
     # output$LocationByActivityCount <- DT::renderDataTable({
@@ -90,6 +111,7 @@ function(input, output, session) {
             tags$h5("ID:", selectedActivity$fulcrum_id),
             tags$strong(HTML(sprintf("%s", selectedActivity$location))),tags$br(),
             sprintf("Activity type: %s", selectedActivity$activity), tags$br(),
+            sprintf("Start date: %s", selectedActivity$start_date), tags$br(),
             if(is.na(selectedActivity$activities_performed_all)) {sprintf("")}
             else {sprintf("Activity performed: %s", selectedActivity$activities_performed_all)}, tags$br(),
             sprintf("Staff: %s", selectedActivity$staff), tags$br(),
@@ -194,6 +216,9 @@ function(input, output, session) {
                 Activity=activity,
                 Location=location,
                 Start_date=start_date2,
+                Incident_type=incident_type2,
+                Species=species2,
+                Outcome=outcome2,
                 Duration_days=duration_days,
                 Duration_hours=duration_hours,
                 Grant_description=grant,
@@ -206,18 +231,15 @@ function(input, output, session) {
     })
 
     # Generate report for output on button click
-    # For PDF output, change this to ".pdf" or ".doc"
+    # For PDF output, change this to ".pdf" from ".doc"
     output$dir_report <- downloadHandler(
-        filename = paste("nr_act_filtered_report_",
-                         as.character(input$dateRange[1]),"_",
-                         as.character(input$dateRange[2]),".doc",sep=""),
+        filename = paste0("nr_act_filtered_report_",
+                         Sys.Date(),".doc"),
         content = function(file) {
             # Copy the report file to a temporary directory before processing it, in
             # case we don't have write permissions to the current working dir (which
             # can happen when deployed).
-            tempReport_Rmd=file.path(tempdir(),paste("nr_act_filtered_report_",
-                                                     as.character(input$dateRange[1]),"_",
-                                                     as.character(input$dateRange[2]),".Rmd",sep=""))
+            tempReport_Rmd=file.path(tempdir(),"nr_act_filtered_report.Rmd")
             t_nr_act=nr_act_filtered()
             sink(file=tempReport_Rmd,append=F,type="output")
                 cat("---","\n",
@@ -226,8 +248,13 @@ function(input, output, session) {
                     "date: ",as.character(Sys.Date()),"\n",
                     "---","\n","\n",sep="")
                 for(i in unique(t_nr_act$dir_report_category)){
+                    cat("_______________________________________________\n")
                     cat("##",i,"\n")
                     for(j in unique(t_nr_act$reservations2)) {
+                        len_k=length(t_nr_act$report_text3[t_nr_act$dir_report_category==i &
+                                                               t_nr_act$reservations2==j])
+                        if(len_k<1)
+                            break
                         cat("###",j,"\n")
                         for(k in t_nr_act$report_text3[t_nr_act$dir_report_category==i &
                                                        t_nr_act$reservations2==j]) {
@@ -249,11 +276,21 @@ function(input, output, session) {
     )
 
     output$download_filtered_table = downloadHandler(
-        filename = paste("nr_act_filtered_table_",
-                         as.character(input$dateRange[1]),"_",
-                         as.character(input$dateRange[2]),".csv",sep=""),
+        filename = paste0("nr_act_filtered_table_",
+                         Sys.Date(),".csv"),
         content = function(file) {
             write.csv(nr_act_filtered(), file, row.names = FALSE)
+        }
+    )
+
+    output$download_wildlife_table = downloadHandler(
+        filename = paste0("nr_act_wildlife_table_",
+                          Sys.Date(),".csv"),
+        content = function(file) {
+            write.csv(nr_act_filtered() %>%
+                          filter(activity_category == "Wildlife Incident") %>% 
+                          count(Reservation = reservations2,Species = species2,Outcome = outcome2), 
+                      file, row.names = FALSE)
         }
     )
     
@@ -269,11 +306,47 @@ function(input, output, session) {
     })
 
     output$download_map_table = downloadHandler(
-        filename = paste("nr_act_map_table_",
-                         as.character(input$dateRange[1]),"_",
-                         as.character(input$dateRange[2]),".csv",sep=""),
+        filename = paste0("nr_act_map_table_",
+                         Sys.Date(),".csv"),
         content = function(file) {
             write.csv(nr_act_InBounds(), file, row.names = FALSE)
+        }
+    )
+
+    output$planting_table <- DT::renderDataTable({
+        planting = nr_plant
+        DT::datatable(planting, escape = FALSE)
+    })
+
+    output$download_planting_table = downloadHandler(
+        filename = paste0("planting_table_",
+                          Sys.Date(),".csv"),
+        content = function(file) {
+            write.csv(nr_plant, file, row.names = FALSE)
+        }
+    )
+    
+    output$download_plantsum_table = downloadHandler(
+        filename = paste0("plantsum_table_",
+                          Sys.Date(),".csv"),
+        content = function(file) {
+            write.csv(nr_plant_sum, file, row.names = FALSE)
+        }
+    )
+    
+    output$download_plantsum2_table = downloadHandler(
+        filename = paste0("plantsum2_table_",
+                          Sys.Date(),".csv"),
+        content = function(file) {
+            write.csv(nr_plant_sum_year_res, file, row.names = FALSE)
+        }
+    )
+
+    output$download_plantsum3_table = downloadHandler(
+        filename = paste0("plantsum3_latest_year_table_",
+                          Sys.Date(),".csv"),
+        content = function(file) {
+            write.csv(nr_plant_sum_latest_year, file, row.names = FALSE)
         }
     )
     
@@ -286,8 +359,7 @@ function(input, output, session) {
     
     output$download_whole_table = downloadHandler(
         filename = paste("nr_act_whole_table_",
-                         as.character(input$dateRange[1]),"_",
-                         as.character(input$dateRange[2]),".csv",sep=""),
+                         Sys.Date(),".csv",sep=""),
         content = function(file) {
             write.csv(nr_act_df, file, row.names = FALSE)
         }
