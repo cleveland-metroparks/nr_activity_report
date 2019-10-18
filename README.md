@@ -12,6 +12,23 @@ Good reference for [formating reports] (https://shiny.rstudio.com/tutorial/writt
 
 Even better reference for [generating and downloading html reports] (https://shiny.rstudio.com/articles/generating-reports.html)
 
+## To get data from fulcrum into database
+
+* In fulcrum app, choose export
+  * Choose PostGIS for file format
+  * Once in a while, choose Include Photos to get a backup of them
+    * This will fill up your downloads folder fast
+  * Do not choose Include GPS Data, History, or Changesets
+  * Hit Finish
+  * Once finished zipping, click download button
+* Move download somewhere or leave in Downloads
+* Extract from zip file using windows
+* Double click .sql file to open in DBeaver
+  * Make sure NR Monitoring database and management schema are selected from dropdowns or insert code to set schema
+  * Run this script
+* Once changes are in database, run app in R project or on Rshiny server
+
+
 ## To do #- [] 
 - [x] Add map view
   - [x] Decide what needs to be in the view
@@ -27,17 +44,18 @@ Even better reference for [generating and downloading html reports] (https://shi
   - Large table does now
 - [x] Table of what is in map view
   - [x] imbedded calculations
-- [] director's report by reservation
+- [x] director's report by reservation
   - [x] replace NA for reservation with Other
-  - [] fix example to work on whole table
-  - [] render as word?
+  - [x] fix example to work on whole table
+  - [x] render as word?
 - [x] get filtered data reactive working
 - [] Grants report
   - This task is waiting for re-import of Fulcrum data, since grant fields are currently blank
   - [x] Grant_id summary field
 - [] Get polygons working
   - [] Include them here in map
-- [] Do we want a table download?
+- [x] Do we want a table download?
   - Yes for some of tabs
 - [] Move some calculations and combined fields into view in database
+- [] Add column to filter view to take you to the polygon (blank if no polygon)
 
