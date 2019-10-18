@@ -10,6 +10,7 @@ library(rgdal)
 library(htmltools)
 library(sf)
 
+# This is intended to bring in params that are not version controlled and not in repo
 source("loginparams.R")
 
 pool <- pool::dbPool(drv = RPostgreSQL::PostgreSQL(),
