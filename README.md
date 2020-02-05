@@ -18,7 +18,8 @@ Even better reference for [generating and downloading html reports] (https://shi
   * Choose PostGIS for file format
   * Once in a while, choose Include Photos to get a backup of them
     * This will fill up your downloads folder fast
-  * Do not choose Include GPS Data, History, or Changesets
+  * Do not choose Include GPS Data or Changesets
+  * Do include Full History
   * Hit Finish
   * Once finished zipping, click download button
 * Move download somewhere or leave in Downloads
@@ -50,10 +51,10 @@ Even better reference for [generating and downloading html reports] (https://shi
   - [x] render as word?
 - [x] get filtered data reactive working
 - [] Grants report
-  - This task is waiting for re-import of Fulcrum data, since grant fields are currently blank
   - [x] Grant_id summary field
-- [] Get polygons working
-  - [] Include them here in map
+  - [] Need to add grant id drop-down to Fulcrum and possibly rework this part of report
+- [x] Get polygons working
+  - [x] Include them here in map
 - [x] Do we want a table download?
   - Yes for some of tabs
 - [] Move some calculations and combined fields into view in database
