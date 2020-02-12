@@ -92,8 +92,9 @@ nr_act_df$report_text=apply(nr_act_df[c("activity","activities_performed_all","p
                                         "description_combined","meeting_location","meeting_attendees",
                                         "meeting_attendance","comments_combined")],1,paste_noNA,sep="; ")
 nr_act_df$report_text2=apply(nr_act_df[c("fulcrum_user2","report_text","staff")],1,paste_noNA,sep=": ")
-nr_act_df$report_text3=paste("**",nr_act_df$fulcrum_user2,":** ",nr_act_df$report_text," (Staff: ",
-                             nr_act_df$staff,")",sep="")
+# nr_act_df$report_text3=paste("**",nr_act_df$fulcrum_user2,":** ",nr_act_df$report_text," (Staff: ",
+#                              nr_act_df$staff,")",sep="")
+nr_act_df$report_text3=paste(nr_act_df$fulcrum_user2,": ",nr_act_df$report_text,sep="")
 
 nr_act_df$dir_report_category=case_when(nr_act_df$activity_category2 %in% c("Wildlife Incident",
                                                                             "Deer Management",
