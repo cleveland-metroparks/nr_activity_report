@@ -3,6 +3,7 @@ library(RColorBrewer)
 library(scales)
 library(lattice)
 library(dplyr)
+library(htmltools)
 
 function(input, output, session) {
 
@@ -75,6 +76,7 @@ function(input, output, session) {
             setView(lng = -81.65, lat = 41.38, zoom = 10) %>% 
             addCircleMarkers(~longitude, ~latitude, radius=10, layerId=~fulcrum_id,
                        stroke=FALSE, fillOpacity=1.0, fillColor=pal(colorData),
+                       label=~lapply(hover_text,HTML),
                        group = "Activities") %>% addTiles() %>%
             addPolygons(data=napf,color="black",weight=1,smoothFactor = 0.5,
                         opacity = 1.0, fillOpacity = 0.2,fillColor = "grey",
@@ -104,37 +106,38 @@ function(input, output, session) {
     #     DT::datatable(df3)
     # })
 
+# Removed for now since websockets are not working    
     # Show a popup at the given location
-    showActivityPopup <- function(id, lat, lng) {
-        selectedActivity <- nr_act_df[nr_act_df$fulcrum_id == id,]
-        content <- as.character(tagList(
-            tags$h5("ID:", selectedActivity$fulcrum_id),
-            tags$strong(HTML(sprintf("%s", selectedActivity$location))),tags$br(),
-            sprintf("Activity type: %s", selectedActivity$activity), tags$br(),
-            sprintf("Start date: %s", selectedActivity$start_date), tags$br(),
-            if(is.na(selectedActivity$activities_performed_all)) {sprintf("")}
-            else {sprintf("Activity performed: %s", selectedActivity$activities_performed_all)}, tags$br(),
-            sprintf("Staff: %s", selectedActivity$staff), tags$br(),
-            sprintf("Duration: %s", ifelse(is.na(selectedActivity$duration_days),
-                                           paste(selectedActivity$duration_hours,"hours"),
-                                           paste(selectedActivity$duration_days,"days"))), tags$br(),
-            if(selectedActivity$grant=="Other:  NA") {sprintf("")}
-            else {sprintf("Grant: %s", selectedActivity$grant)}, tags$br()
-        ))
-        leafletProxy("map") %>% addPopups(lng, lat, content, layerId = id)
-    }
-    
+    # showActivityPopup <- function(id, lat, lng) {
+    #     selectedActivity <- nr_act_df[nr_act_df$fulcrum_id == id,]
+    #     content <- as.character(tagList(
+    #         tags$h5("ID:", selectedActivity$fulcrum_id),
+    #         tags$strong(HTML(sprintf("%s", selectedActivity$location))),tags$br(),
+    #         sprintf("Activity type: %s", selectedActivity$activity), tags$br(),
+    #         sprintf("Start date: %s", selectedActivity$start_date), tags$br(),
+    #         if(is.na(selectedActivity$activities_performed_all)) {sprintf("")}
+    #         else {sprintf("Activity performed: %s", selectedActivity$activities_performed_all)}, tags$br(),
+    #         sprintf("Staff: %s", selectedActivity$staff), tags$br(),
+    #         sprintf("Duration: %s", ifelse(is.na(selectedActivity$duration_days),
+    #                                        paste(selectedActivity$duration_hours,"hours"),
+    #                                        paste(selectedActivity$duration_days,"days"))), tags$br(),
+    #         if(selectedActivity$grant=="Other:  NA") {sprintf("")}
+    #         else {sprintf("Grant: %s", selectedActivity$grant)}, tags$br()
+    #     ))
+    #     leafletProxy("map") %>% addPopups(lng, lat, content, layerId = id)
+    # }
+# Removed for now since websockets are not working    
     # When map is clicked, show a popup with activity info
-    observe({
-        leafletProxy("map") %>% clearPopups()
-        event <- input$map_marker_click
-        if (is.null(event))
-            return()
-        
-        isolate({
-            showActivityPopup(event$id, event$lat, event$lng)
-        })
-    })
+    # observe({
+    #     leafletProxy("map") %>% clearPopups()
+    #     event <- input$map_marker_click
+    #     if (is.null(event))
+    #         return()
+    #     
+    #     isolate({
+    #         showActivityPopup(event$id, event$lat, event$lng)
+    #     })
+    # })
     
 ##    summary_table ##########################################
     observe({
@@ -200,16 +203,16 @@ function(input, output, session) {
     
     output$summary_table <- DT::renderDataTable({
         df2 = nr_act_filtered() %>%
-
-            mutate(action_jump_to_map = paste('<a class="go-map" href="" data-lat="',
-                                  latitude,
-                                  '" data-long="',
-                                  longitude,
-                                  '" data-id="',
-                                  fulcrum_id,
-                                  '"><i class="fa fa-crosshairs"></i></a>',
-                                  sep="")
-            ) %>%
+# Removed for now since websockets are not working
+            # mutate(action_jump_to_map = paste('<a class="go-map" href="" data-lat="',
+            #                       latitude,
+            #                       '" data-long="',
+            #                       longitude,
+            #                       '" data-id="',
+            #                       fulcrum_id,
+            #                       '"><i class="fa fa-crosshairs"></i></a>',
+            #                       sep="")
+            # ) %>%
             select(
                 Entered_by=fulcrum_user2,
                 Staff=staff,
@@ -221,8 +224,8 @@ function(input, output, session) {
                 Outcome=outcome2,
                 Duration_days=duration_days,
                 Duration_hours=duration_hours,
-                Grant_description=grant,
-                Jump_to_map=action_jump_to_map
+                Grant_description=grant #, Removed for now since websockets are not working
+ #               Jump_to_map=action_jump_to_map
             )
 
         action <- DT::dataTableAjax(session, df2)

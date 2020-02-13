@@ -116,6 +116,20 @@ nr_act_df$dir_report_category=case_when(nr_act_df$activity_category2 %in% c("Wil
                                                                             "Fire Prep") ~ "Site Managament",
                                         TRUE ~ "Other" # Currently includes "Other","Interdepartmental Assistance","Equipment Maintenance/Transport"
 )
+nr_act_df$hover_text = paste(sep="<br/>",paste0("ID: ",nr_act_df$fulcrum_id),
+                             paste0("<b>",nr_act_df$location,"</b>"),
+                             paste0("Activity type: ",nr_act_df$activity),
+                             paste0("Start date: ",nr_act_df$start_date),
+                             paste0("Activity performed: ",nr_act_df$activities_performed_all),
+                             paste0("Staff: ",nr_act_df$staff),
+                             paste0("Duration: ",ifelse(is.na(nr_act_df$duration_days),
+                                                        paste(nr_act_df$duration_hours,"hours"),
+                                                        paste(nr_act_df$duration_days,"days"))),
+                             paste0("Grant: ",nr_act_df$grant)
+)
+# lapply(seq(nrow(nr_act_df)),function(){
+#     paste0("ID: ",nr_act_df[i,fulcrum_id],"<br/>",nr_act_df[i,location])
+# }
 
 # nr_act_df=SpatialPointsDataFrame(coords = c(nr_act_df$longitude,nr_act_df$latitude),
 #                                  data = nr_act_df, 
