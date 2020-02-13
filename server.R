@@ -76,7 +76,8 @@ function(input, output, session) {
             setView(lng = -81.65, lat = 41.38, zoom = 10) %>% 
             addCircleMarkers(~longitude, ~latitude, radius=10, layerId=~fulcrum_id,
                        stroke=FALSE, fillOpacity=1.0, fillColor=pal(colorData),
-                       label=~lapply(hover_text2,HTML),
+                       label=~hover_text2,
+#                       label=~lapply(hover_text,HTML),# Removed for now since websockets are not working  
                        group = "Activities") %>% addTiles() %>%
             addPolygons(data=napf,color="black",weight=1,smoothFactor = 0.5,
                         opacity = 1.0, fillOpacity = 0.2,fillColor = "grey",
