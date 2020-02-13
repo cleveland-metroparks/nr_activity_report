@@ -127,6 +127,19 @@ nr_act_df$hover_text = paste(sep="<br/>",paste0("ID: ",nr_act_df$fulcrum_id),
                                                         paste(nr_act_df$duration_days,"days"))),
                              paste0("Grant: ",nr_act_df$grant)
 )
+
+nr_act_df$hover_text2 = paste(sep="; ",paste0("ID: ",nr_act_df$fulcrum_id),
+                             nr_act_df$location,
+                             paste0("Activity type: ",nr_act_df$activity),
+                             paste0("Start date: ",nr_act_df$start_date),
+                             paste0("Activity performed: ",nr_act_df$activities_performed_all),
+                             paste0("Staff: ",nr_act_df$staff),
+                             paste0("Duration: ",ifelse(is.na(nr_act_df$duration_days),
+                                                        paste(nr_act_df$duration_hours,"hours"),
+                                                        paste(nr_act_df$duration_days,"days"))),
+                             paste0("Grant: ",nr_act_df$grant)
+)
+
 # lapply(seq(nrow(nr_act_df)),function(){
 #     paste0("ID: ",nr_act_df[i,fulcrum_id],"<br/>",nr_act_df[i,location])
 # }
