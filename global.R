@@ -22,7 +22,7 @@ pool <- pool::dbPool(drv = RPostgreSQL::PostgreSQL(),
 #   RS-DBI driver warning: (unrecognized PostgreSQL field type geometry (id:85253) in column 13)
 # But see use of st_read below for alternative
 
-nr_act = pool %>% tbl(in_schema(Schema,"nr_activity_tracking"))
+nr_act = pool %>% tbl(in_schema(Schema,"nr_activity_view"))
 nr_act_df = as.data.frame(nr_act)
 # Get username from email
 nr_act_df$fulcrum_user=sapply(strsplit(nr_act_df$created_by,split="@"), `[`, 1)
