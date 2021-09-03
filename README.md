@@ -57,6 +57,11 @@ Even better reference for [generating and downloading html reports] (https://shi
   - [x] Include them here in map
 - [x] Do we want a table download?
   - Yes for some of tabs
-- [] Move some calculations and combined fields into view in database
+- [x] Move some calculations and combined fields into view in database
+
+### postgis_view branch
+
+- [] Move plant summary fields to views
+- [] Make filters work on plant table views
 - [] Add column to filter view to take you to the polygon (blank if no polygon)
 
